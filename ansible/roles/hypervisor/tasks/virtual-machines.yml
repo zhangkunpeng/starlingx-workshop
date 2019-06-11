@@ -1,10 +1,18 @@
 ---
 
-- name: download stx iso 
-  get_url:
-    url: "{{ iso_image }}"
-    dest: "{{ iso_image_install_dir }}/{{ iso_image | basename }}"
-    mode: 0440
+# - name: download stx iso 
+#   get_url:
+#     url: "{{ iso_image }}"
+#     dest: "{{ iso_image_install_dir }}/{{ iso_image | basename }}"
+#     mode: 0440
+
+- name: copy stx iso
+  copy:
+    src: /root/bootimage.iso
+    dest: "{{ iso_image_install_dir }}/bootimage.iso"
+    owner: root
+    group: root
+    mode: 0755
 
 - name: ensure virtual machine backing images exist 
   shell: |
