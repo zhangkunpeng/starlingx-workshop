@@ -14,6 +14,14 @@
     group: root
     mode: 0755
 
+- name: copy helm charts
+  copy:
+    src: "{{ helm_chart_manifest }}"
+    dest: "/root/stx-openstack-1.0-14.tgz"
+    owner: root
+    group: root
+    mode: 0755
+
 - name: ensure virtual machine backing images exist 
   shell: |
     qemu-img create -f qcow2 \
