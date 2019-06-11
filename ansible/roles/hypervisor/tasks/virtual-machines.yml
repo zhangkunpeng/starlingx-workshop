@@ -8,8 +8,8 @@
 
 - name: copy stx iso
   copy:
-    src: /root/bootimage.iso
-    dest: "{{ iso_image_install_dir }}/bootimage.iso"
+    src: "{{ iso_image }}"
+    dest: "{{ iso_image_install_dir }}/{{ iso_image | basename }}"
     owner: root
     group: root
     mode: 0755
