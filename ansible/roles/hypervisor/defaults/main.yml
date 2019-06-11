@@ -2,8 +2,9 @@
 
 hypervisor_use_apt_mirrors: True
 
-iso_image: ""
+iso_image: "/root/bootimage.iso"
 iso_image_install_dir: "/var/lib/libvirt/images"
+helm_chart_manifest: "/root/stx-openstack-1.0-14-centos-stable-latest.tgz"
 
 controller_name: "simplex-controller-0"
 
