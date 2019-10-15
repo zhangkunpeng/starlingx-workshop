@@ -2,9 +2,12 @@
 
 hypervisor_use_apt_mirrors: True
 
-iso_image: "/root/bootimage.iso"
+iso_image_url: "http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso"
+stx_openstack_charts_url: "http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/helm-charts/stx-openstack-1.0-17-centos-stable-latest.tgz"
+stx_openstack_charts_name: "stx-openstack-1.0-14-centos-stable-latest.tgz"
+
+iso_image_name: "bootimage.iso"
 iso_image_install_dir: "/var/lib/libvirt/images"
-helm_chart_manifest: "/root/stx-openstack-1.0-14-centos-stable-latest.tgz"
 
 controller_name: "simplex-controller-0"
 

@@ -17,14 +17,14 @@
     volumes:
     - "/var/lib/registry:/var/lib/registry"
 
-- name: remove old starlingx images
-  docker_image:
-    name: "{{item[0]}}"
-    tag: "{{item[1]}}"
-    state: absent
-  with_nested: 
-    - "{{images.starlingx.names}}"
-    - "{{images.starlingx.tags}}"
+# - name: remove old starlingx images
+#   docker_image:
+#     name: "{{item[0]}}"
+#     tag: "{{item[1]}}"
+#     state: absent
+#   with_nested: 
+#     - "{{images.starlingx.names}}"
+#     - "{{images.starlingx.tags}}"
 
 
 - name: Tag and push starlingx images to local registry

@@ -1,24 +1,29 @@
 ---
 
-# - name: download stx iso 
-#   get_url:
-#     url: "{{ iso_image }}"
+- name: download stx iso 
+  get_url:
+    url: "{{ iso_image_url }}"
+    dest: "{{ iso_image_install_dir }}/{{ iso_image_name }}"
+    mode: 0440
+
+- name: download stx-openstack charts
+  get_url:
+    url: "{{ stx_openstack_charts_url }}"
+    dest: "/home/student/{{ stx_openstack_charts_name }}"
+    mode: 0755
+# - name: copy stx iso
+#   copy:
+#     src: "{{ iso_image }}"
 #     dest: "{{ iso_image_install_dir }}/{{ iso_image | basename }}"
-#     mode: 0440
+#     owner: root
+#     group: root
+#     mode: 0755
 
-- name: copy stx iso
-  copy:
-    src: "{{ iso_image }}"
-    dest: "{{ iso_image_install_dir }}/{{ iso_image | basename }}"
-    owner: root
-    group: root
-    mode: 0755
-
-- name: copy helm charts
-  copy:
-    src: "{{ helm_chart_manifest }}"
-    dest: "/home/student/stx-openstack-1.0-14.tgz"
-    mode: 0755
+# - name: copy helm charts
+#   copy:
+#     src: "{{ helm_chart_manifest }}"
+#     dest: "/home/student/stx-openstack-1.0-14.tgz"
+#     mode: 0755
 
 - name: ensure virtual machine backing images exist 
   shell: |
