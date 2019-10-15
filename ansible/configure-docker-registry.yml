@@ -2,4 +2,5 @@
 
 - hosts: localhost
   roles:
+    - geerlingguy.docker
     - setup-local-registry
