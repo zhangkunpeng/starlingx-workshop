@@ -1,7 +1,5 @@
 ---
 
-- hosts: 
-    #- tag_stx_workshop_util
-    - tag_stx_workshop
+- hosts: localhost
   roles:
-    - docker-registry
+    - setup-local-registry

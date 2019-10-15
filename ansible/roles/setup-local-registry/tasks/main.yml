@@ -1,0 +1,76 @@
+---
+
+- name: ensure registry directory exist
+  file:
+    path: /var/lib/registry
+    state: directory
+    mode: '0755'
+
+#TODO: ensure not listening on external IP
+- name: ensure docker registry container is running
+  docker_container:
+    name: registry
+    image: registry:2
+    state: started
+    ports:
+    - "5000:5000"
+    volumes:
+    - "/var/lib/registry:/var/lib/registry"
+
+- name: remove old starlingx images
+  docker_image:
+    name: "{{item[0]}}"
+    tag: "{{item[1]}}"
+    state: absent
+  with_nested: 
+    - "{{images.starlingx.names}}"
+    - "{{images.starlingx.tags}}"
+
+
+- name: Tag and push starlingx images to local registry
+  docker_image:
+    name: "{{item[0]}}"
+    tag: "{{item[1]}}"
+    repository: "{{local_registry}}/{{item[0]}}"
+    force_tag: yes
+    push: yes
+    source: pull
+  with_nested: 
+    - "{{images.starlingx.names}}"
+    - "{{images.starlingx.tags}}"
+
+- name: Tag and push docker.io images to local registry
+  docker_image:
+    name: "{{item}}"
+    repository: "{{local_registry}}/{{item | regex_replace('(docker.io)/')}}"
+    push: yes
+    source: pull
+  with_items: 
+    - "{{images.docker}}"
+
+- name: Tag and push quay.io images to local registry
+  docker_image:
+    name: "{{item}}"
+    repository: "{{local_registry}}/{{item | regex_replace('(quay.io)/')}}"
+    push: yes
+    source: pull
+  with_items: 
+    - "{{images.quay}}"
+
+- name: Tag and push gcr.io images to local registry
+  docker_image:
+    name: "{{ item }}"
+    repository: "{{local_registry}}/{{item | regex_replace('gcr.io/')}}"
+    push: yes
+    source: pull
+  with_items: 
+    - "{{images.gcr}}"
+
+- name: Tag and push k8s.gcr.io images to local registry
+  docker_image:
+    name: "{{ item }}"
+    repository: "{{local_registry}}/{{item | regex_replace('k8s.gcr.io/')}}"
+    push: yes
+    source: pull
+  with_items: 
+    - "{{images.k8s}}"
