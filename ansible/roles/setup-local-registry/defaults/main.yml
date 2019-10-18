@@ -1,7 +1,9 @@
 ---
 local_registry: localhost:5000
-gcr_registry: gcr.azk8s.cn/
-k8s_registry: gcr.azk8s.cn/google-containers/
+gcr_registry: gcr.io/
+k8s_registry: k8s.gcr.io/
+# gcr_registry: gcr.azk8s.cn/
+# k8s_registry: gcr.azk8s.cn/google-containers/
 
 images:
   starlingx:

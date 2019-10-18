@@ -14,5 +14,5 @@ ansible_become_pass: stx2@GNTC
 
 docker_registries:
   unified:
-    url: "{{ workshop_registry }}"
+    url: "10.10.10.1:5000"
 is_secure_registry: False

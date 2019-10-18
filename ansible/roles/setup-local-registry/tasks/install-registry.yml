@@ -16,10 +16,3 @@
     - "5000:5000"
     volumes:
     - "/var/lib/registry:/var/lib/registry"
-
-- name: set workshop_registry
-  set_fact:
-    workshop_registry: "{{ hostvars[inventory_hostname].ansible_bond0.ipv4.address }}:5000"
-
-- name: print workshop_registry
-  debug: var=workshop_registry
