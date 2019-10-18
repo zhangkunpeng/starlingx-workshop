@@ -1,5 +1,16 @@
 ---
 
+# For docker
+- name: ensure requirements for pip are installed
+  apt:
+    name: "python-pip"
+    state: latest
+    update_cache: true
+
+- name: install ansible docker modules pip requirements 
+  pip:
+    name: docker-py
+
 - include: install-registry.yml
 
 - name: pull starlingx images
