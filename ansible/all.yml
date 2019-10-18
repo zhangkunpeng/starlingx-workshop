@@ -1,5 +1,5 @@
 ---
-- import_playbook: configure-docker-registry.yml
+
 
 # Create the packet.com nodes
 - import_playbook: provision-nodes.yml
@@ -9,6 +9,8 @@
   tasks:
     - name: refresh inventory after potential node creation
       meta: refresh_inventory
+
+- import_playbook: configure-docker-registry.yml
 
 - import_playbook: configure-student-access.yml
 
