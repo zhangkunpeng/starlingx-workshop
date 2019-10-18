@@ -1,5 +1,10 @@
 ---
 
+- name: install docker-py
+  pip:
+    name: docker-py
+    
+
 - include: install-registry.yml
 
 - name: pull starlingx images
