@@ -6,11 +6,6 @@
     dest: "{{ iso_image_install_dir }}/{{ iso_image_name }}"
     mode: 0440
 
-- name: download stx-openstack charts
-  get_url:
-    url: "{{ stx_openstack_charts_url }}"
-    dest: "/home/student/{{ stx_openstack_charts_name }}"
-    mode: 0755
 # - name: copy stx iso
 #   copy:
 #     src: "{{ iso_image }}"

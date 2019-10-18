@@ -1,0 +1,18 @@
+system_mode: simplex
+
+dns_servers:
+- 8.8.8.8
+- 8.8.4.4
+
+external_oam_subnet: 10.10.10.0/24
+external_oam_gateway_address: 10.10.10.1
+external_oam_floating_address: 10.10.10.2
+
+admin_username: admin
+admin_password: stx2@GNTC
+ansible_become_pass: stx2@GNTC
+
+docker_registries:
+  unified:
+    url: "{{ workshop_registry }}"
+is_secure_registry: False

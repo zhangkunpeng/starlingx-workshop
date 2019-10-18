@@ -1,5 +1,11 @@
 ---
 
+- name: ensure workshop_resigtry defined
+  assert:
+    that:
+      - "workshop_registry is defined"
+      - "{{ workshop_registry | length }} > 0"
+
 - include: packages.yml
 - include: networking.yml
 - include: iptables.yml
@@ -14,3 +20,22 @@
     mode: "0755"
   tags:
     - reset_script
+
+
+- name: download stx-openstack charts
+  get_url:
+    url: "{{ stx_openstack_charts_url }}"
+    dest: "/home/student/{{ stx_openstack_charts_name }}"
+    mode: 0755
+
+- name: create localhost.yml from template
+  template:
+    src: "localhost.yml"
+    dest: "/home/student/localhost.yml"
+    mode: 0755
+
+- name: download unlock host script
+  get_url:
+    url: "{{ unlock_script_url }}"
+    dest: "/home/student/{{ unlock_script_url | basename}}"
+    mode: 0755

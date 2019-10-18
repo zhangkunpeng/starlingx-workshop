@@ -32,3 +32,5 @@ external_network: "10.10.10.0/{{ external_netmask_cidr }}"
 lvm_services:
   - lvm2-lvmetad.service
   - lvm2-lvmetad.socket
+
+unlock_script_url: https://raw.githubusercontent.com/zhangkunpeng/starlingx/master/host-unlock/stx-2.0/unluck-host.sh
