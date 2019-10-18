@@ -2,8 +2,6 @@
 
 - hosts: localhost
 
-  pre_tasks:
-    - name: install pip
   roles:
     - geerlingguy.docker
     - setup-local-registry
