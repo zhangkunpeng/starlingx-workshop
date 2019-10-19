@@ -40,4 +40,6 @@
   apt:
     name: "python-libvirt"
 
-
+- name: ensure ufw is installed 
+  apt:
+    name: "ufw"

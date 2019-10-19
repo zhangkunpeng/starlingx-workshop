@@ -6,3 +6,7 @@
     table: nat
     source: "{{ external_network }}"
     jump: MASQUERADE
+
+- name: ufw disable
+  ufw:
+    state: disabled
