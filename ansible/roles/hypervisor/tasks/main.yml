@@ -1,11 +1,5 @@
 ---
 
-- name: ensure workshop_resigtry defined
-  assert:
-    that:
-      - "workshop_registry is defined"
-      - "{{ workshop_registry | length }} > 0"
-
 - include: packages.yml
 - include: networking.yml
 - include: iptables.yml
