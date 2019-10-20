@@ -1,0 +1,23 @@
+unset OS_SERVICE_TOKEN
+
+export OS_ENDPOINT_TYPE=internalURL
+export CINDER_ENDPOINT_TYPE=internalURL
+
+export OS_USERNAME=admin
+export OS_PASSWORD=`TERM=linux /opt/platform/.keyring/19.08/.CREDENTIAL 2>/dev/null`
+export OS_AUTH_TYPE=password
+export OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
+
+export OS_PROJECT_NAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+export OS_INTERFACE=internal
+
+if [ ! -z "${OS_PASSWORD}" ]; then
+    export PS1='[\u@\h \W(openstack_$OS_USERNAME)]\$ '
+else
+    echo 'Openstack Admin credentials can only be loaded from the active controller.'
+    export PS1='\h:\w\$ '
+fi

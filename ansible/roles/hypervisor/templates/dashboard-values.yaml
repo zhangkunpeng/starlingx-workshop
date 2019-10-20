@@ -1,0 +1,11 @@
+service:
+  type: NodePort
+  nodePort: 30000
+
+rbac:
+  create: true
+  clusterAdminRole: true
+
+serviceAccount:
+  create: true
+  name: kubernetes-dashboard
