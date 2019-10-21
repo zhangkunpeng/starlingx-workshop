@@ -11,3 +11,6 @@ packet_environments:
     num_nodes: "1"
   - region: "nrt1"
     num_nodes: "1"
+
+
+registry: local

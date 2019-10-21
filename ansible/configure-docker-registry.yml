@@ -4,4 +4,4 @@
 
   roles:
     - geerlingguy.docker
-    - setup-local-registry
+    - { role: setup-local-registry, when: registry == "local" }

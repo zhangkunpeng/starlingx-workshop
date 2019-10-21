@@ -16,4 +16,4 @@
 
 - import_playbook: configure-hypervisor.yml
 
-- import_playbook: configure-docker.yml
+- import_playbook: configure-proxy.yml

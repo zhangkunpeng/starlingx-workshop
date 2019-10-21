@@ -12,7 +12,9 @@ admin_username: admin
 admin_password: stx2@GNTC
 ansible_become_pass: stx2@GNTC
 
+{% if registry == "local" -%}
 docker_registries:
   unified:
     url: "10.10.10.1:5000"
 is_secure_registry: False
+{% endif -%}
