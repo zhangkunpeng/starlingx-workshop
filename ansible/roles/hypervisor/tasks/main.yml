@@ -22,17 +22,25 @@
     dest: "/home/student/{{ stx_openstack_charts_name }}"
     mode: 0755
 
-- name: create files from template
-  template:
-    src: "{{item}}"
-    dest: "/home/student/{{item}}"
-    mode: 0755
-  with_items:
-    - "localhost.yml"
-    - "admin-login.yaml"
-    - "dashboard-values.yaml"
-    - "openstack_rc"
-    - "setup-openstack.sh"
+
+- name: "judge localhost.yml is exits"
+  stat: 
+    path: /home/student/localhost.yml
+  register: config_file
+
+- block:
+  - name: create files from template
+    template:
+      src: "{{item}}"
+      dest: "/home/student/{{item}}"
+      mode: 0755
+    with_items:
+      - "localhost.yml"
+      - "admin-login.yaml"
+      - "dashboard-values.yaml"
+      - "openstack_rc"
+      - "setup-openstack.sh"
+  when: not config_file.stat.exists
 
 - name: download unlock host script
   get_url:
