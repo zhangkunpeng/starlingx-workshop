@@ -40,7 +40,7 @@
       - "dashboard-values.yaml"
       - "openstack_rc"
       - "setup-openstack.sh"
-  when: not config_file.stat.exists
+  when: not config_file.stat.exists || registry == "local"
 
 - name: download unlock host script
   get_url:
