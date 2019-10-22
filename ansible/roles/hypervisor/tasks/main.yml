@@ -18,21 +18,31 @@
 
 - name: download stx-openstack charts
   get_url:
-    url: "{{ stx_openstack_charts_url }}"
-    dest: "/home/student/{{ stx_openstack_charts_name }}"
+    url: "{{ item }}"
+    dest: "/home/student/tools/{{ item | basename }}"
     mode: 0755
+  with_items:
+    - "{{ stx_openstack_charts_url }}"
+    - "{{ unlock_script_url }}"
+    - "{{ cirros_image_url }}"
 
+- name: tool dir exist
+  file:
+    path: /home/student/tools/
+    state: directory
+    user: student
+    mode: '0755'
 
 - name: "judge localhost.yml is exits"
   stat: 
-    path: /home/student/localhost.yml
+    path: /home/student/tools/localhost.yml
   register: config_file
 
 - block:
   - name: create files from template
     template:
       src: "{{item}}"
-      dest: "/home/student/{{item}}"
+      dest: "/home/student/tools/{{item}}"
       mode: 0755
     with_items:
       - "localhost.yml"
@@ -40,16 +50,4 @@
       - "dashboard-values.yaml"
       - "openstack_rc"
       - "setup-openstack.sh"
-  when: not config_file.stat.exists || registry == "local"
-
-- name: download unlock host script
-  get_url:
-    url: "{{ unlock_script_url }}"
-    dest: "/home/student/{{ unlock_script_url | basename}}"
-    mode: 0755
-
-- name: download image cirros
-  get_url:
-    url: "{{ cirros_image_url }}"
-    dest: "/home/student/{{ cirros_image_url | basename}}"
-    mode: 0755
+  when: not config_file.stat.exists or registry == "local"
