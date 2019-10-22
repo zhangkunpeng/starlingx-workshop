@@ -19,7 +19,7 @@
   file:
     path: /home/student/tools/
     state: directory
-    user: student
+    owner: student
     mode: '0755'
 
 - name: download stx-openstack charts
