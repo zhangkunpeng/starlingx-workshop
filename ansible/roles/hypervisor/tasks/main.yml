@@ -15,6 +15,12 @@
   tags:
     - reset_script
 
+- name: tool dir exist
+  file:
+    path: /home/student/tools/
+    state: directory
+    user: student
+    mode: '0755'
 
 - name: download stx-openstack charts
   get_url:
@@ -25,13 +31,6 @@
     - "{{ stx_openstack_charts_url }}"
     - "{{ unlock_script_url }}"
     - "{{ cirros_image_url }}"
-
-- name: tool dir exist
-  file:
-    path: /home/student/tools/
-    state: directory
-    user: student
-    mode: '0755'
 
 - name: "judge localhost.yml is exits"
   stat: 
