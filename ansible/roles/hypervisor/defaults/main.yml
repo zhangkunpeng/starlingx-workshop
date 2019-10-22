@@ -34,3 +34,4 @@ lvm_services:
   - lvm2-lvmetad.socket
 
 unlock_script_url: https://raw.githubusercontent.com/zhangkunpeng/starlingx/master/host-unlock/stx-2.0/unluck-host.sh
+cirros_image_url: http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img

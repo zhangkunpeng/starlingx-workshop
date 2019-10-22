@@ -47,3 +47,9 @@
     url: "{{ unlock_script_url }}"
     dest: "/home/student/{{ unlock_script_url | basename}}"
     mode: 0755
+
+- name: download image cirros
+  get_url:
+    url: "{{ cirros_image_url }}"
+    dest: "/home/student/{{ cirros_image_url | basename}}"
+    mode: 0755
